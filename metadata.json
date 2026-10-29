@@ -1,0 +1,8 @@
+{
+  "name": "Don Juba - Barbearia Premium",
+  "description": "App oficial da Barbearia Don Juba em Vitória da Conquista. Agendamento online de cortes e barbas, serviços premium e tradição.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,58 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isValidId(docId) {
+      return docId is string && docId.size() > 0 && docId.size() <= 100;
+    }
+
+    function isValidService(data) {
+      return data.keys().hasAll(['id', 'name', 'price', 'durationMinutes', 'category', 'imageUrl'])
+        && data.name is string && data.name.size() > 0 && data.name.size() <= 100
+        && data.price is number && data.price >= 0
+        && data.durationMinutes is number && data.durationMinutes > 0
+        && data.category is string && data.category in ['cabelo', 'barba', 'combo', 'tratamento']
+        && data.imageUrl is string && data.imageUrl.size() <= 1000;
+    }
+
+    function isValidAdmin(data) {
+      return data.keys().hasAll(['email', 'role'])
+        && data.email is string && data.email.size() > 3 && data.email.size() <= 150
+        && data.role is string && data.role in ['owner', 'admin'];
+    }
+
+    function isValidAppointment(data) {
+      return data.keys().hasAll(['id', 'serviceName', 'date', 'time', 'userName', 'userPhone', 'status'])
+        && data.userName is string && data.userName.size() > 0 && data.userName.size() <= 100
+        && data.userPhone is string && data.userPhone.size() > 0 && data.userPhone.size() <= 50
+        && data.status is string && data.status in ['confirmado', 'concluido', 'cancelado'];
+    }
+
+    // Services collection: readable by all clients, modifiable by admin operations
+    match /services/{serviceId} {
+      allow read: if true;
+      allow create, update: if isValidId(serviceId) && isValidService(request.resource.data);
+      allow delete: if isValidId(serviceId);
+    }
+
+    // Admins collection: managed by administrators
+    match /admins/{adminId} {
+      allow read: if true;
+      allow create, update: if isValidId(adminId) && isValidAdmin(request.resource.data);
+      allow delete: if isValidId(adminId);
+    }
+
+    // Appointments collection: clients create, admins manage
+    match /appointments/{appointmentId} {
+      allow read: if true;
+      allow create, update: if isValidId(appointmentId) && isValidAppointment(request.resource.data);
+      allow delete: if isValidId(appointmentId);
+    }
+
+    // Connection test document
+    match /test/{docId} {
+      allow read, write: if true;
+    }
+  }
+}

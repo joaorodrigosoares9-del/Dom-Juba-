@@ -1,0 +1,74 @@
+{
+  "entities": {
+    "Service": {
+      "title": "Service",
+      "description": "Barbershop haircut or grooming service",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string", "maxLength": 100 },
+        "description": { "type": "string", "maxLength": 500 },
+        "price": { "type": "number" },
+        "durationMinutes": { "type": "number" },
+        "category": { "type": "string", "enum": ["cabelo", "barba", "combo", "tratamento"] },
+        "imageUrl": { "type": "string", "maxLength": 1000 },
+        "popular": { "type": "boolean" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "name", "price", "durationMinutes", "category", "imageUrl"]
+    },
+    "AdminUser": {
+      "title": "AdminUser",
+      "description": "Authorized administrator accounts",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "maxLength": 150 },
+        "name": { "type": "string", "maxLength": 100 },
+        "role": { "type": "string", "enum": ["owner", "admin"] },
+        "password": { "type": "string", "maxLength": 100 },
+        "createdAt": { "type": "string" },
+        "createdBy": { "type": "string" }
+      },
+      "required": ["email", "role"]
+    },
+    "Appointment": {
+      "title": "Appointment",
+      "description": "Client appointment booking",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "serviceId": { "type": "string" },
+        "serviceName": { "type": "string" },
+        "servicePrice": { "type": "number" },
+        "serviceDuration": { "type": "number" },
+        "barberId": { "type": "string" },
+        "barberName": { "type": "string" },
+        "barberImage": { "type": "string" },
+        "date": { "type": "string" },
+        "time": { "type": "string" },
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "userPhone": { "type": "string" },
+        "notes": { "type": "string" },
+        "status": { "type": "string", "enum": ["confirmado", "concluido", "cancelado"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "serviceName", "date", "time", "userName", "userPhone", "status"]
+    }
+  },
+  "firestore": {
+    "/services/{serviceId}": {
+      "schema": { "$ref": "#/entities/Service" },
+      "description": "Barbershop haircuts and treatments available for booking"
+    },
+    "/admins/{adminId}": {
+      "schema": { "$ref": "#/entities/AdminUser" },
+      "description": "Authorized administrators who have access to manage services and appointments"
+    },
+    "/appointments/{appointmentId}": {
+      "schema": { "$ref": "#/entities/Appointment" },
+      "description": "Booked appointments"
+    }
+  }
+}
