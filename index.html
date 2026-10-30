@@ -29,6 +29,15 @@
   </head>
   <body class="bg-[#07090E] text-slate-100 antialiased selection:bg-[#E31837] selection:text-white">
     <div id="root"></div>
+    <script>
+      (function() {
+        const redirect = sessionStorage.getItem('redirect_path');
+        if (redirect && redirect !== '/') {
+          sessionStorage.removeItem('redirect_path');
+          window.history.replaceState(null, '', redirect);
+        }
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Don Juba - Redirecionando...</title>
+    <script>
+      // Redireciona rotas SPA no GitHub Pages preservando o caminho na URL
+      const path = window.location.pathname;
+      sessionStorage.setItem('redirect_path', path);
+      window.location.replace('/');
+    </script>
+  </head>
+  <body style="background-color: #07090E; color: #fff; font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0;">
+    <p>Redirecionando para Don Juba...</p>
+  </body>
+</html>
