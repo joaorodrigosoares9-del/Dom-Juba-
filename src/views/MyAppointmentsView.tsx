@@ -188,18 +188,28 @@ export const MyAppointmentsView: React.FC = () => {
     const endIso = `${apt.date.replace(/-/g, '')}T${endHour}${apt.time.split(':')[1]}00`;
 
     const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startIso}/${endIso}&details=${details}&location=${location}`;
-    window.open(gcalUrl, '_blank');
+    safeOpenLink(gcalUrl);
+  };
+
+  const safeOpenLink = (url: string) => {
+    const a = document.createElement('a');
+    a.href = url;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   };
 
   const handleWhatsAppConfirm = (apt: Appointment) => {
     const text = encodeURIComponent(
       `Olá! Estou a caminho para o meu agendamento na Barbearia Don Juba:\n\n✂️ Serviço: ${apt.serviceName}\n👤 Barbeiro: ${apt.barberName}\n📅 Data: ${apt.date}\n⏰ Horário: ${apt.time}\nCliente: ${apt.userName}`
     );
-    window.open(`https://wa.me/${BARBERSHOP_INFO.phoneClean}?text=${text}`, '_blank');
+    safeOpenLink(`https://wa.me/${BARBERSHOP_INFO.phoneClean}?text=${text}`);
   };
 
   const handleOpenMaps = () => {
-    window.open(BARBERSHOP_INFO.mapsUrl, '_blank');
+    safeOpenLink(BARBERSHOP_INFO.mapsUrl);
   };
 
   const handleTestAlert = () => {

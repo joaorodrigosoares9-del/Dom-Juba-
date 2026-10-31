@@ -6,9 +6,12 @@
     <title>Don Juba - Redirecionando...</title>
     <script>
       // Redireciona rotas SPA no GitHub Pages preservando o caminho na URL
-      const path = window.location.pathname;
-      sessionStorage.setItem('redirect_path', path);
-      window.location.replace('/');
+      const pathSegments = window.location.pathname.split('/').filter(Boolean);
+      const isSubpath = window.location.hostname.endsWith('github.io') && pathSegments.length > 0;
+      const basePath = isSubpath ? '/' + pathSegments[0] + '/' : '/';
+      const redirectPath = window.location.pathname + window.location.search + window.location.hash;
+      sessionStorage.setItem('redirect_path', redirectPath);
+      window.location.replace(basePath);
     </script>
   </head>
   <body style="background-color: #07090E; color: #fff; font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0;">

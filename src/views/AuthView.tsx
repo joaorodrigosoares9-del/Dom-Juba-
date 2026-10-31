@@ -183,14 +183,14 @@ export const AuthView: React.FC = () => {
           </div>
         </div>
 
-        {/* Enter as Guest Button */}
+        {/* Enter as Guest / Preview Button */}
         <button
           type="button"
           onClick={loginAsGuest}
-          className="w-full min-h-[50px] flex items-center justify-center gap-2.5 rounded-2xl bg-white/[0.06] hover:bg-white/[0.1] border border-white/10 text-white font-semibold text-sm active:scale-95 transition hover:border-[#0EA5E9]/50"
+          className="w-full min-h-[50px] flex items-center justify-center gap-2.5 rounded-2xl bg-gradient-to-r from-white/[0.08] to-white/[0.04] hover:bg-white/[0.12] border border-[#0EA5E9]/40 hover:border-[#0EA5E9] text-white font-semibold text-sm active:scale-95 transition shadow-lg shadow-[#0EA5E9]/10"
         >
-          <UserCheck className="w-4 h-4 text-[#0EA5E9]" />
-          <span>Entrar como Visitante</span>
+          <Sparkles className="w-4 h-4 text-[#0EA5E9]" />
+          <span>Ver Demonstração Completa (Visitante)</span>
         </button>
       </motion.div>
 

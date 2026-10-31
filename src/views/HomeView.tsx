@@ -28,13 +28,23 @@ export const HomeView: React.FC = () => {
   const [formPhone, setFormPhone] = useState(user?.phone || '');
   const [formMessage, setFormMessage] = useState('');
 
+  const safeOpenLink = (url: string) => {
+    const a = document.createElement('a');
+    a.href = url;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  };
+
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formName.trim() || !formMessage.trim()) return;
     const text = encodeURIComponent(
       `Olá, Barbearia Don Juba!\n\nNome: ${formName.trim()}\nTelefone: ${formPhone.trim() || 'Não informado'}\n\nMensagem: ${formMessage.trim()}`
     );
-    window.open(`https://wa.me/${BARBERSHOP_INFO.phoneClean}?text=${text}`, '_blank');
+    safeOpenLink(`https://wa.me/${BARBERSHOP_INFO.phoneClean}?text=${text}`);
   };
 
   return (

@@ -9,7 +9,7 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ onOpenInstallModal }) => {
-  const { activeTab, bookingState, goBack, canGoBack } = useApp();
+  const { activeTab, bookingState, goBack, canGoBack, user } = useApp();
   const { isInstallable, isInstalled } = usePWAInstall();
 
   // Determine Title based on current view
@@ -61,9 +61,16 @@ export const Header: React.FC<HeaderProps> = ({ onOpenInstallModal }) => {
           )}
 
           <div className="flex flex-col">
-            <h1 className="text-base font-bold font-heading text-white tracking-wide line-clamp-1">
-              {title}
-            </h1>
+            <div className="flex items-center gap-1.5">
+              <h1 className="text-base font-bold font-heading text-white tracking-wide line-clamp-1">
+                {title}
+              </h1>
+              {user?.isGuest && activeTab === 'inicio' && (
+                <span className="px-1.5 py-0.2 text-[9px] font-bold rounded-md bg-[#0EA5E9]/15 text-[#38BDF8] border border-[#0EA5E9]/30">
+                  Preview
+                </span>
+              )}
+            </div>
             <span className="text-[11px] font-medium text-slate-400 line-clamp-1">
               {subtitle}
             </span>

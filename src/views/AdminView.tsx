@@ -25,6 +25,7 @@ import {
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { Service, AppointmentStatus, AdminAccount } from '../types';
+import { toast } from 'sonner';
 
 export const AdminView: React.FC = () => {
   const {
@@ -118,12 +119,12 @@ export const AdminView: React.FC = () => {
       if (!hasSetPassword || isSettingPasswordMode) {
         // User is setting their custom password for the first time
         if (newPasswordInput.trim().length < 4) {
-          alert('A senha deve ter no mínimo 4 caracteres.');
+          toast.error('A senha deve ter no mínimo 4 caracteres.');
           setIsSubmitting(false);
           return;
         }
         if (newPasswordInput !== confirmPasswordInput) {
-          alert('As senhas digitadas não coincidem.');
+          toast.error('As senhas digitadas não coincidem.');
           setIsSubmitting(false);
           return;
         }
@@ -204,7 +205,14 @@ export const AdminView: React.FC = () => {
             <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-xl text-[11px] text-red-300">
               Apenas e-mails cadastrados previamente pelo proprietário da Don Juba podem desbloquear este painel.
               <div className="mt-1 text-[10px] text-slate-400">
-                Proprietário Master: <strong className="text-white">{masterOwnerEmail}</strong>
+                Proprietário Master:{' '}
+                <button
+                  type="button"
+                  onClick={() => setLoginEmailInput(masterOwnerEmail)}
+                  className="text-[#0EA5E9] hover:underline font-bold"
+                >
+                  {masterOwnerEmail}
+                </button>
               </div>
             </div>
           )}

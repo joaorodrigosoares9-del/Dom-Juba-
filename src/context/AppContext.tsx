@@ -127,13 +127,26 @@ const getInitialAppointments = (userPhone: string, userName: string): Appointmen
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
+const DEFAULT_PREVIEW_USER: User = {
+  id: 'guest-preview',
+  name: 'Cliente Don Juba',
+  phone: '(77) 98845-9301',
+  email: 'visitante@donjuba.com.br',
+  isGuest: true,
+  isAdmin: false,
+  createdAt: new Date().toISOString(),
+};
+
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY_USER);
-      return saved ? JSON.parse(saved) : null;
+      if (saved === 'logged_out') {
+        return null;
+      }
+      return saved ? JSON.parse(saved) : DEFAULT_PREVIEW_USER;
     } catch {
-      return null;
+      return DEFAULT_PREVIEW_USER;
     }
   });
 
@@ -165,7 +178,6 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
           snapshot.forEach((docSnap) => {
             loaded.push({ id: docSnap.id, ...(docSnap.data() as Omit<Service, 'id'>) });
           });
-          // Sort by category or name
           setServices(loaded);
           setIsServicesLoading(false);
         } else {
@@ -174,8 +186,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         }
       },
       (error) => {
-        console.error('Error fetching services snapshot:', error);
-        handleFirestoreError(error, OperationType.LIST, 'services');
+        console.warn('Aviso ao carregar serviços do Firestore (usando catálogo local):', error?.message || error);
+        setIsServicesLoading(false);
       }
     );
 
@@ -205,8 +217,22 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         }
       },
       (error) => {
-        console.error('Error fetching admins snapshot:', error);
-        handleFirestoreError(error, OperationType.LIST, 'admins');
+        console.warn('Aviso ao carregar administradores do Firestore (usando admin padrão):', error?.message || error);
+        setAdminAccounts((prev) =>
+          prev.length > 0
+            ? prev
+            : [
+                {
+                  id: 'admin_master_owner',
+                  email: MASTER_OWNER_EMAIL,
+                  name: 'Proprietário Don Juba',
+                  role: 'owner',
+                  hasSetCustomPassword: false,
+                  createdAt: new Date().toISOString(),
+                  createdBy: 'system_bootstrap',
+                },
+              ]
+        );
       }
     );
 
@@ -228,8 +254,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         }
       },
       (error) => {
-        console.error('Error fetching appointments snapshot:', error);
-        handleFirestoreError(error, OperationType.LIST, 'appointments');
+        console.warn('Aviso ao carregar agendamentos do Firestore (usando agendamentos locais):', error?.message || error);
       }
     );
 
@@ -380,6 +405,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const logout = () => {
+    try {
+      localStorage.setItem(STORAGE_KEY_USER, 'logged_out');
+    } catch {
+      // ignore
+    }
     setUser(null);
     setCurrentAdminAccount(null);
     setBookingState(initialBookingState);

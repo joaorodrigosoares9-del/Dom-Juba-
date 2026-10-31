@@ -71,7 +71,7 @@ const MainAppContent: React.FC = () => {
 
         {/* Centralized Mobile App Frame: Max Width 480px */}
         <main
-          className="relative w-full max-w-[480px] min-h-screen sm:min-h-[844px] sm:max-h-[920px] bg-[#07090E] sm:rounded-[44px] shadow-[0_25px_70px_rgba(0,0,0,0.85)] border-0 sm:border sm:border-white/10 overflow-hidden flex flex-col"
+          className="relative w-full max-w-[480px] h-full min-h-screen sm:min-h-[640px] sm:h-[860px] sm:max-h-[94vh] bg-[#07090E] sm:rounded-[44px] shadow-[0_25px_70px_rgba(0,0,0,0.85)] border-0 sm:border sm:border-white/10 overflow-hidden flex flex-col"
           style={{ boxSizing: 'border-box' }}
         >
           {/* Mobile Status Bar */}
