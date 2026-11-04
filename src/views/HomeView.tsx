@@ -42,7 +42,7 @@ export const HomeView: React.FC = () => {
     e.preventDefault();
     if (!formName.trim() || !formMessage.trim()) return;
     const text = encodeURIComponent(
-      `Olá, Barbearia Don Juba!\n\nNome: ${formName.trim()}\nTelefone: ${formPhone.trim() || 'Não informado'}\n\nMensagem: ${formMessage.trim()}`
+      `Olá, Barbearia Bigode Grosso!\n\nNome: ${formName.trim()}\nTelefone: ${formPhone.trim() || 'Não informado'}\n\nMensagem: ${formMessage.trim()}`
     );
     safeOpenLink(`https://wa.me/${BARBERSHOP_INFO.phoneClean}?text=${text}`);
   };
@@ -333,7 +333,7 @@ export const HomeView: React.FC = () => {
                 </label>
                 <input
                   type="tel"
-                  placeholder="(77) 98845-9301"
+                  placeholder="(77) 99846-3074"
                   value={formPhone}
                   onChange={(e) => setFormPhone(e.target.value)}
                   className="w-full min-h-[42px] bg-white/[0.04] border border-white/10 rounded-xl px-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#0EA5E9]"

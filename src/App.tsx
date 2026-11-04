@@ -168,7 +168,7 @@ const MainAppContent: React.FC = () => {
 
         {/* Desktop Footer Subtext */}
         <footer className="hidden sm:block mt-3 text-center text-[11px] text-slate-400">
-          <span>Barbearia Don Juba PWA • Design Mobile-First</span>
+          <span>Barbearia Bigode Grosso PWA • Design Mobile-First</span>
         </footer>
       </div>
     </>

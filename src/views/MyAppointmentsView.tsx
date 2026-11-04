@@ -159,13 +159,13 @@ export const MyAppointmentsView: React.FC = () => {
   // Toast notification alert on mounting if there is an imminent or today appointment
   useEffect(() => {
     if (nearestUpcoming && nearestUrgency?.isNear) {
-      const notifiedKey = `donjuba_notified_${nearestUpcoming.id}_${nearestUpcoming.date}_${nearestUpcoming.time}`;
+      const notifiedKey = `bigodegrosso_notified_${nearestUpcoming.id}_${nearestUpcoming.date}_${nearestUpcoming.time}`;
       if (!sessionStorage.getItem(notifiedKey)) {
         sessionStorage.setItem(notifiedKey, 'true');
         toast(
           nearestUrgency.urgencyLevel === 'imminent'
             ? '🔔 Horário Marcado Próximo!'
-            : '📅 Lembrete de Agendamento Don Juba',
+            : '📅 Lembrete de Agendamento Bigode Grosso',
           {
             description: `${nearestUpcoming.serviceName} com ${nearestUpcoming.barberName} — ${nearestUrgency.countdownText}.`,
             duration: 6000,
@@ -177,9 +177,9 @@ export const MyAppointmentsView: React.FC = () => {
 
   // Add to Calendar helper
   const handleAddToCalendar = (apt: Appointment) => {
-    const title = encodeURIComponent(`Don Juba: ${apt.serviceName} com ${apt.barberName}`);
+    const title = encodeURIComponent(`Bigode Grosso: ${apt.serviceName} com ${apt.barberName}`);
     const details = encodeURIComponent(
-      `Agendamento na Barbearia Don Juba.\nServiço: ${apt.serviceName}\nBarbeiro: ${apt.barberName}\nEndereço: ${BARBERSHOP_INFO.address}\nTelefone: ${BARBERSHOP_INFO.phone}`
+      `Agendamento na Barbearia Bigode Grosso.\nServiço: ${apt.serviceName}\nBarbeiro: ${apt.barberName}\nEndereço: ${BARBERSHOP_INFO.address}\nTelefone: ${BARBERSHOP_INFO.phone}`
     );
     const location = encodeURIComponent(BARBERSHOP_INFO.address);
 
@@ -203,7 +203,7 @@ export const MyAppointmentsView: React.FC = () => {
 
   const handleWhatsAppConfirm = (apt: Appointment) => {
     const text = encodeURIComponent(
-      `Olá! Estou a caminho para o meu agendamento na Barbearia Don Juba:\n\n✂️ Serviço: ${apt.serviceName}\n👤 Barbeiro: ${apt.barberName}\n📅 Data: ${apt.date}\n⏰ Horário: ${apt.time}\nCliente: ${apt.userName}`
+      `Olá! Estou a caminho para o meu agendamento na Barbearia Bigode Grosso:\n\n✂️ Serviço: ${apt.serviceName}\n👤 Barbeiro: ${apt.barberName}\n📅 Data: ${apt.date}\n⏰ Horário: ${apt.time}\nCliente: ${apt.userName}`
     );
     safeOpenLink(`https://wa.me/${BARBERSHOP_INFO.phoneClean}?text=${text}`);
   };
@@ -289,8 +289,8 @@ export const MyAppointmentsView: React.FC = () => {
             <div className="flex items-center gap-2 text-slate-300">
               <MapPin className="w-4 h-4 text-[#E31837] flex-shrink-0" />
               <div className="leading-tight">
-                <span className="font-medium block text-[11px] text-white">Edifício Ademar Galvão</span>
-                <span className="text-[10px] text-slate-400">R. Nova Zelândia, 891 - Candeias</span>
+                <span className="font-medium block text-[11px] text-white">Barbearia Bigode Grosso</span>
+                <span className="text-[10px] text-slate-400">R. Vilma Dias de Souza - Candeias</span>
               </div>
             </div>
 
@@ -368,7 +368,7 @@ export const MyAppointmentsView: React.FC = () => {
           </h3>
           <p className="text-xs text-slate-400 max-w-xs mx-auto">
             {filter === 'proximos'
-              ? 'Que tal garantir seu corte ou barba com os mestres da Don Juba hoje mesmo?'
+              ? 'Que tal garantir seu corte ou barba com os mestres da Bigode Grosso hoje mesmo?'
               : 'Seus cortes finalizados aparecerão aqui no seu histórico.'}
           </p>
           {filter === 'proximos' && (

@@ -150,7 +150,7 @@ export const AdminView: React.FC = () => {
 
         <h2 className="text-xl font-bold font-heading text-white">Painel da Administração</h2>
         <p className="text-xs text-slate-300 max-w-xs mt-1 mb-6">
-          Acesso exclusivo para administradores cadastrados da Barbearia Don Juba.
+          Acesso exclusivo para administradores cadastrados da Barbearia Bigode Grosso.
         </p>
 
         {/* Security Warning for regular clients or visitors */}
@@ -203,7 +203,7 @@ export const AdminView: React.FC = () => {
           {/* If email is NOT authorized */}
           {!isAuthorized && cleanEmail && (
             <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-xl text-[11px] text-red-300">
-              Apenas e-mails cadastrados previamente pelo proprietário da Don Juba podem desbloquear este painel.
+              Apenas e-mails cadastrados previamente pelo proprietário da Bigode Grosso podem desbloquear este painel.
               <div className="mt-1 text-[10px] text-slate-400">
                 Proprietário Master:{' '}
                 <button
@@ -359,7 +359,7 @@ export const AdminView: React.FC = () => {
 
     await addService({
       name: newServiceName.trim(),
-      description: newServiceDesc.trim() || 'Serviço executado com precisão e técnica pela equipe Don Juba.',
+      description: newServiceDesc.trim() || 'Serviço executado com precisão e técnica pela equipe Bigode Grosso.',
       price: Number(newServicePrice) || 60,
       durationMinutes: Number(newServiceDuration) || 35,
       category: newServiceCategory,
@@ -446,7 +446,7 @@ export const AdminView: React.FC = () => {
               {user?.email}
             </h2>
             <span className="text-[10px] text-slate-300">
-              {isMasterOwner ? 'Proprietário Don Juba (Master)' : 'Administrador'}
+              {isMasterOwner ? 'Proprietário Bigode Grosso (Master)' : 'Administrador'}
             </span>
           </div>
         </div>
@@ -949,7 +949,7 @@ export const AdminView: React.FC = () => {
                 <input
                   type="text"
                   required
-                  placeholder="Ex: Fade Navalhado Don Juba"
+                  placeholder="Ex: Fade Navalhado Bigode Grosso"
                   value={newServiceName}
                   onChange={(e) => setNewServiceName(e.target.value)}
                   className="w-full min-h-[44px] bg-white/[0.05] border border-white/10 rounded-xl px-3 text-xs text-white focus:outline-none focus:border-[#E31837]"

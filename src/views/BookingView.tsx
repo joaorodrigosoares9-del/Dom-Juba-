@@ -424,24 +424,24 @@ export const BookingView: React.FC = () => {
             <div className="space-y-4">
               {(() => {
                 const selectedDayOfWeek = selectedDate ? new Date(selectedDate + 'T12:00:00').getDay() : null;
+                const isMonday = selectedDayOfWeek === 1;
                 const isSaturday = selectedDayOfWeek === 6;
-                const isMonOrTue = selectedDayOfWeek === 1 || selectedDayOfWeek === 2;
 
-                const morningSlots = isSaturday
-                  ? ['09:00', '09:45', '10:30', '11:15', '12:00']
-                  : isMonOrTue
-                  ? ['08:39', '09:20', '10:00', '10:45', '11:30', '12:15']
-                  : ['08:30', '09:15', '10:00', '10:45', '11:30', '12:15'];
+                const morningSlots = isMonday
+                  ? []
+                  : ['09:00', '09:45', '10:30', '11:15', '12:00'];
 
-                const afternoonSlots = isSaturday
-                  ? ['13:00', '13:45', '14:30', '15:15', '16:00', '16:30']
+                const afternoonSlots = isMonday
+                  ? ['14:00', '14:45', '15:30', '16:15', '17:00', '17:45', '18:15']
+                  : isSaturday
+                  ? ['13:00', '13:45', '14:15']
                   : ['13:00', '13:45', '14:30', '15:15', '16:00', '16:45', '17:30', '18:15'];
 
-                const expedienteLabel = isSaturday
-                  ? '09:00 às 17:00 (Sábado)'
-                  : isMonOrTue
-                  ? '08:39 às 19:00 (Segunda/Terça)'
-                  : '08:30 às 19:00';
+                const expedienteLabel = isMonday
+                  ? '14:00 às 19:00 (Segunda-feira)'
+                  : isSaturday
+                  ? '09:00 às 15:00 (Sábado)'
+                  : '09:00 às 19:00 (Terça a Sexta)';
 
                 return (
                   <>
@@ -453,35 +453,45 @@ export const BookingView: React.FC = () => {
                       </span>
                     </div>
 
-                    {/* Manhã */}
-                    <div>
-                      <h3 className="text-xs font-bold text-[#0EA5E9] uppercase tracking-wider mb-2">
-                        {isSaturday ? 'Manhã (09:00 – 12:00)' : isMonOrTue ? 'Manhã (08:39 – 12:15)' : 'Manhã (08:30 – 12:15)'}
-                      </h3>
-                      <div className="grid grid-cols-3 gap-2">
-                        {morningSlots.map((time) => {
-                          const isSelected = selectedTime === time;
-                          return (
-                            <button
-                              key={time}
-                              onClick={() => selectTime(time)}
-                              className={`min-h-[44px] rounded-xl text-xs font-bold transition-all active:scale-95 ${
-                                isSelected
-                                  ? 'bg-gradient-to-r from-[#E31837] to-[#BE122C] text-white shadow-lg shadow-[#E31837]/35 ring-1 ring-white/20'
-                                  : 'bg-[#0E1322] border border-white/10 text-slate-200 hover:border-white/25'
-                              }`}
-                            >
-                              {time}
-                            </button>
-                          );
-                        })}
+                    {/* Manhã (se houver expediente matutino) */}
+                    {morningSlots.length > 0 ? (
+                      <div>
+                        <h3 className="text-xs font-bold text-[#0EA5E9] uppercase tracking-wider mb-2">
+                          Manhã (09:00 – 12:00)
+                        </h3>
+                        <div className="grid grid-cols-3 gap-2">
+                          {morningSlots.map((time) => {
+                            const isSelected = selectedTime === time;
+                            return (
+                              <button
+                                key={time}
+                                onClick={() => selectTime(time)}
+                                className={`min-h-[44px] rounded-xl text-xs font-bold transition-all active:scale-95 ${
+                                  isSelected
+                                    ? 'bg-gradient-to-r from-[#E31837] to-[#BE122C] text-white shadow-lg shadow-[#E31837]/35 ring-1 ring-white/20'
+                                    : 'bg-[#0E1322] border border-white/10 text-slate-200 hover:border-white/25'
+                                }`}
+                              >
+                                {time}
+                              </button>
+                            );
+                          })}
+                        </div>
                       </div>
-                    </div>
+                    ) : (
+                      <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5 text-center text-xs text-slate-400">
+                        Às segundas-feiras o expediente inicia a partir das <strong className="text-amber-400">14:00</strong>.
+                      </div>
+                    )}
 
                     {/* Tarde */}
                     <div>
                       <h3 className="text-xs font-bold text-[#0EA5E9] uppercase tracking-wider mb-2">
-                        {isSaturday ? 'Tarde (13:00 – 17:00)' : 'Tarde (13:00 – 19:00)'}
+                        {isMonday
+                          ? 'Tarde (14:00 – 19:00)'
+                          : isSaturday
+                          ? 'Tarde (13:00 – 15:00)'
+                          : 'Tarde (13:00 – 19:00)'}
                       </h3>
                       <div className="grid grid-cols-3 gap-2">
                         {afternoonSlots.map((time) => {

@@ -15,9 +15,9 @@ export default defineConfig(() => {
         includeAssets: ['favicon.png', 'apple-touch-icon.png', 'icon.svg'],
         manifest: {
           id: '/',
-          name: 'Don Juba - Barbearia',
-          short_name: 'DonJuba',
-          description: 'App oficial da Barbearia Don Juba em Vitória da Conquista. Agendamentos, cortes e barbas de alto padrão.',
+          name: 'Barbearia Bigode Grosso',
+          short_name: 'BigodeGrosso',
+          description: 'App oficial da Barbearia Bigode Grosso em Vitória da Conquista. Agendamentos, cortes e barbas de alto padrão.',
           theme_color: '#0B0F19',
           background_color: '#0B0F19',
           display: 'standalone',

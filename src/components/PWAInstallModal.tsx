@@ -34,14 +34,14 @@ export const PWAInstallModal: React.FC<PWAInstallModalProps> = ({ isOpen, onClos
         {/* Modal Header */}
         <div className="flex items-center gap-4 mb-5">
           <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#E31837] to-[#0EA5E9] p-0.5 shadow-xl shadow-[#E31837]/20 flex items-center justify-center">
-            <img src="/pwa-192x192.png" alt="Don Juba" className="w-full h-full rounded-2xl object-cover" />
+            <img src="/pwa-192x192.png" alt="Bigode Grosso" className="w-full h-full rounded-2xl object-cover" />
           </div>
           <div>
             <div className="flex items-center gap-1.5 text-xs text-[#0EA5E9] font-bold uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5" />
               App Mobile PWA
             </div>
-            <h3 className="text-lg font-bold font-heading text-white">Instalar Don Juba</h3>
+            <h3 className="text-lg font-bold font-heading text-white">Instalar Bigode Grosso</h3>
             <p className="text-xs text-slate-400">Acesso instantâneo sem gastar memória</p>
           </div>
         </div>

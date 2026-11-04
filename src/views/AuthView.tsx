@@ -136,7 +136,7 @@ export const AuthView: React.FC = () => {
                 <Phone className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                 <input
                   type="tel"
-                  placeholder="(77) 98845-9301"
+                  placeholder="(77) 99846-3074"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   className="w-full min-h-[48px] bg-white/[0.04] border border-white/10 rounded-2xl pl-10 pr-4 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#0EA5E9] focus:ring-1 focus:ring-[#0EA5E9] transition"

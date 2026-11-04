@@ -1,23 +1,23 @@
 import { Barber, Service } from '../types';
 
 export const BARBERSHOP_INFO = {
-  name: 'Don Juba',
+  name: 'Barbearia Bigode Grosso',
   headline: 'Estilo & Tradição',
   niche: 'Barbearia',
-  description: 'Tradição, navalha afiada e excelência em cada detalhe. O melhor atendimento de Vitória da Conquista na Barbearia Don Juba no Edifício Ademar Galvão.',
-  address: 'Edifício Ademar Galvão - R. Nova Zelândia, 891 - loja 01 - Candeias, Vitória da Conquista - BA, 45028-095',
-  phone: '(77) 98845-9301',
-  phoneClean: '5577988459301',
-  whatsappUrl: 'https://wa.me/5577988459301?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio%20na%20Barbearia%20Don%20Juba.',
-  mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Edif%C3%ADcio+Ademar+Galv%C3%A3o+-+R.+Nova+Zel%C3%A2ndia,+891+-+loja+01+-+Candeias,+Vit%C3%B3ria+da+Conquista+-+BA,+45028-095',
-  hours: 'Segunda a Sexta: 08:30/08:39 às 19:00 • Sábado: 09:00 às 17:00 • Domingo: Fechado',
+  description: 'Tradição, navalha afiada e excelência em cada detalhe. O melhor atendimento de Vitória da Conquista na Barbearia Bigode Grosso no Candeias.',
+  address: 'R. Vilma Dias de Souza - Candeias, Vitória da Conquista - BA, 45028-570',
+  phone: '(77) 99846-3074',
+  phoneClean: '5577998463074',
+  whatsappUrl: 'https://wa.me/5577998463074?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio%20na%20Barbearia%20Bigode%20Grosso.',
+  mapsUrl: 'https://www.google.com/maps/search/?api=1&query=R.+Vilma+Dias+de+Souza+-+Candeias,+Vit%C3%B3ria+da+Conquista+-+BA,+45028-570',
+  hours: 'Segunda: 14:00 às 19:00 • Terça a Sexta: 09:00 às 19:00 • Sábado: 09:00 às 15:00 • Domingo: Fechado',
   dailySchedule: [
-    { day: 'Segunda-feira', hours: '08:39 – 19:00', open: true },
-    { day: 'Terça-feira', hours: '08:39 – 19:00', open: true },
-    { day: 'Quarta-feira', hours: '08:30 – 19:00', open: true },
-    { day: 'Quinta-feira', hours: '08:30 – 19:00', open: true },
-    { day: 'Sexta-feira', hours: '08:30 – 19:00', open: true },
-    { day: 'Sábado', hours: '09:00 – 17:00', open: true },
+    { day: 'Segunda-feira', hours: '14:00 – 19:00', open: true },
+    { day: 'Terça-feira', hours: '09:00 – 19:00', open: true },
+    { day: 'Quarta-feira', hours: '09:00 – 19:00', open: true },
+    { day: 'Quinta-feira', hours: '09:00 – 19:00', open: true },
+    { day: 'Sexta-feira', hours: '09:00 – 19:00', open: true },
+    { day: 'Sábado', hours: '09:00 – 15:00', open: true },
     { day: 'Domingo', hours: 'Fechado', open: false },
   ],
   stats: [
@@ -143,9 +143,9 @@ export const BARBERS: Barber[] = [
   },
 ];
 
-// Time slots starting at 08:30 according to opening schedule (08:30–19:00)
+// Default time slots across valid business hours
 export const TIME_SLOTS = [
-  '08:30', '09:15', '10:00', '10:45', '11:30',
+  '09:00', '09:45', '10:30', '11:15', '12:00',
   '13:00', '13:45', '14:30', '15:15', '16:00',
   '16:45', '17:30', '18:15'
 ];

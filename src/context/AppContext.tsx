@@ -22,7 +22,7 @@ import {
 import { BARBERS, SERVICES } from '../data/barbershopData';
 
 export const MASTER_OWNER_EMAIL = 'planetaimaginariovdc@gmail.com';
-const STORAGE_KEY_USER = 'donjuba_user_v4';
+const STORAGE_KEY_USER = 'bigodegrosso_user_v1';
 
 interface AppContextType {
   user: User | null;
@@ -100,7 +100,7 @@ const getInitialAppointments = (userPhone: string, userName: string): Appointmen
     time: '15:15',
     userId: 'default-user',
     userName: userName || 'Rodrigo Alcantara',
-    userPhone: userPhone || '(77) 98845-9301',
+    userPhone: userPhone || '(77) 99846-3074',
     notes: 'Degradê na zero com alinhamento na toalha quente.',
     status: 'confirmado',
     createdAt: new Date().toISOString(),
@@ -118,7 +118,7 @@ const getInitialAppointments = (userPhone: string, userName: string): Appointmen
     time: '10:00',
     userId: 'default-user',
     userName: userName || 'Rodrigo Alcantara',
-    userPhone: userPhone || '(77) 98845-9301',
+    userPhone: userPhone || '(77) 99846-3074',
     notes: '',
     status: 'concluido',
     createdAt: new Date(Date.now() - 86400000 * 9).toISOString(),
@@ -129,9 +129,9 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 
 const DEFAULT_PREVIEW_USER: User = {
   id: 'guest-preview',
-  name: 'Cliente Don Juba',
-  phone: '(77) 98845-9301',
-  email: 'visitante@donjuba.com.br',
+  name: 'Cliente Bigode Grosso',
+  phone: '(77) 99846-3074',
+  email: 'visitante@bigodegrosso.com.br',
   isGuest: true,
   isAdmin: false,
   createdAt: new Date().toISOString(),
@@ -225,7 +225,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
                 {
                   id: 'admin_master_owner',
                   email: MASTER_OWNER_EMAIL,
-                  name: 'Proprietário Don Juba',
+                  name: 'Proprietário Bigode Grosso',
                   role: 'owner',
                   hasSetCustomPassword: false,
                   createdAt: new Date().toISOString(),
@@ -283,7 +283,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       const docId = 'admin_master_owner';
       const masterAccount: Omit<AdminAccount, 'id'> = {
         email: MASTER_OWNER_EMAIL,
-        name: 'Proprietário Don Juba',
+        name: 'Proprietário Bigode Grosso',
         role: 'owner',
         hasSetCustomPassword: false, // Owner sets their own password on first login!
         createdAt: new Date().toISOString(),
@@ -371,15 +371,15 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     const guestUser: User = {
       id: 'guest-' + Date.now().toString(36),
       name: 'Visitante',
-      phone: '(77) 98845-9301',
-      email: 'visitante@donjuba.com',
+      phone: '(77) 99846-3074',
+      email: 'visitante@bigodegrosso.com',
       isGuest: true,
       isAdmin: false,
       createdAt: new Date().toISOString(),
     };
     setUser(guestUser);
     setCurrentAdminAccount(null);
-    toast.success('Bem-vindo à Barbearia Don Juba!', {
+    toast.success('Bem-vindo à Barbearia Bigode Grosso!', {
       description: 'Você está navegando como visitante.',
     });
   };
@@ -390,7 +390,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     const newUser: User = {
       id: 'user-' + Date.now().toString(36),
       name: name?.trim() || cleanEmail.split('@')[0],
-      phone: phone?.trim() || '(77) 98845-9301',
+      phone: phone?.trim() || '(77) 99846-3074',
       email: cleanEmail,
       isGuest: false,
       isAdmin: false, // Must authenticate with password to unlock admin privileges
@@ -474,9 +474,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     if (!user || user.email.toLowerCase() !== targetEmail) {
       setUser({
         id: admin.id || 'admin-' + Date.now().toString(36),
-        name: admin.name || 'Administrador Don Juba',
+        name: admin.name || 'Administrador Bigode Grosso',
         email: targetEmail,
-        phone: '(77) 98845-9301',
+        phone: '(77) 99846-3074',
         isGuest: false,
         isAdmin: true,
         createdAt: new Date().toISOString(),
@@ -506,7 +506,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
       const updatedData = {
         email: targetEmail,
-        name: existing?.name || (targetEmail === MASTER_OWNER_EMAIL.toLowerCase() ? 'Proprietário Don Juba' : 'Administrador'),
+        name: existing?.name || (targetEmail === MASTER_OWNER_EMAIL.toLowerCase() ? 'Proprietário Bigode Grosso' : 'Administrador'),
         role: targetEmail === MASTER_OWNER_EMAIL.toLowerCase() ? ('owner' as const) : ('admin' as const),
         password: newPassword.trim(),
         hasSetCustomPassword: true,
@@ -527,7 +527,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
           id: docId,
           name: updatedData.name,
           email: targetEmail,
-          phone: '(77) 98845-9301',
+          phone: '(77) 99846-3074',
           isGuest: false,
           isAdmin: true,
           createdAt: new Date().toISOString(),
@@ -777,8 +777,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       date: selectedDate,
       time: selectedTime,
       userId: user?.id || 'guest',
-      userName: user?.name || 'Cliente Don Juba',
-      userPhone: user?.phone || '(77) 98845-9301',
+      userName: user?.name || 'Cliente Bigode Grosso',
+      userPhone: user?.phone || '(77) 99846-3074',
       notes: notes.trim(),
       status: 'confirmado',
       createdAt: new Date().toISOString(),
